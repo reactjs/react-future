@@ -1,3 +1,5 @@
+// refs on DOM nodes gives the DOM node handle directly, not an intermediate
+// form.
 
 class Foo {
 

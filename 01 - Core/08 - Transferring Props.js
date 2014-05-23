@@ -1,6 +1,12 @@
-import { HTML, mergeCSSProps} from "react-dom";
+import { HTML, mergeHTMLProps } from "react-dom";
 
 // Draft
+
+interface FancyButtonProps extends typeof HTML.button.prototype.props {
+    color: string,
+    width: number,
+    height: number
+}
 
 class FancyButton {
 
@@ -8,31 +14,30 @@ class FancyButton {
     color: 'blue'
   };
 
-  static claimedProps = {
-    color: true,
-    width: true,
-    height: true
-  };
-
-  props: {
-    color: string,
-    width: number,
-    height: number,
-    transferred: typeof(HTML.button.prototype.props)
-  }
+  props: FancyButtonProps; // Could this interface be inlined?
 
   render() {
-    var className = 'FancyButton';
-    var style = {
-      backgroundColor: this.props.color,
-      padding: 10,
-      width: this.props.width - 10,
-      height: this.props.height - 10
-    };
-
-    var button = HTML.button(mergeCSSProps(
-      this.props.transferred,
-      { style, className }
+    var button = HTML.button(mergeHTMLProps(
+      this.props,
+      {
+        className: 'FancyButton',
+        // The linter analyses this file and notices these references to
+        // props.color, props.width and props.height.
+        style: {
+          backgroundColor: this.props.color,
+          padding: 10,
+          width: this.props.width - 10,
+          height: this.props.height - 10
+        },
+        // Any consumed property needs to be explicitly overridden so that
+        // they don't accidentally leak down to the parent. Static lint warning
+        // if these are forgotten.
+        color: undefined,
+        width: undefined,
+        height: undefined
+        // Unsolved issue: Since this props now have too many unknown keys, how
+        // do we warn for typos?
+      }
     ));
 
     /**
@@ -44,7 +49,10 @@ class FancyButton {
      *     padding: 10,
      *     width: 90,
      *     height: 40
-     *   }
+     *   },
+     *   color: undefined,
+     *   width: undefined,
+     *   height: undefined
      * }
      */
 
@@ -56,11 +64,6 @@ class FancyButton {
 class App {
 
   render() {
-    /**
-     * FancyButton.claimedProps is looked up. Every prop that is not on
-     * claimedProps is moved to an inner object - intended to be transferred.
-     */
-
     var fancyButton =
       <FancyButton
         className="test"
@@ -72,12 +75,10 @@ class App {
     /**
      * fancyButton.props === {
      *   color: 'blue',
+     *   className: 'test',
+     *   disabled: true,
      *   width: 100,
-     *   height: 50,
-     *   transferred: {
-     *     className: 'test',
-     *     disabled: true
-     *   }
+     *   height: 50
      * }
      */
  

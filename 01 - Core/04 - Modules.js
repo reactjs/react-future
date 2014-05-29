@@ -9,7 +9,7 @@ import { Button } from "Button";
 
 // and can be aliases like this:
 
-import { Button: MySpecialButton } from "Button";
+import { Button as MySpecialButton } from "Button";
 
 // Another alternative is to export defaults. It's unclear which of these two
 // paradigms will win for Component modules. If default exports win popular

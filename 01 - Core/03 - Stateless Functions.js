@@ -1,6 +1,6 @@
 // Instead of using @jsx directive we import the HTML export from react-dom
 // and bind it to the JSX identifier.
-import { HTML: JSX } from "react-dom";
+import { HTML as JSX } from "react-dom";
 
 // A simple component, that isn't stateful, can be provided as a single
 // function that accepts props. This provides React with a hint that this

@@ -1,4 +1,4 @@
-import { HTML: JSX } from "react-dom";
+import { HTML as JSX } from "react-dom";
 
 // Draft
 

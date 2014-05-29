@@ -1,7 +1,7 @@
 // Instead of using @jsx directive we import the HTML export from react-dom
 // and bind it to the JSX identifier. This models the DOM dependency explicitly.
 // The JSX transpiler uses this identifier to resolve HTML tags. E.g. JSX.div();
-import { HTML: JSX } from "react-dom";
+import { HTML as JSX } from "react-dom";
 
 // The only reason we need a React depencency here is because the base class
 // provides the this.setState method.

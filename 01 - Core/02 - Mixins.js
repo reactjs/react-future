@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { HTML: JSX } from "react-dom";
+import { HTML as JSX } from "react-dom";
 import { mixin } from "react-utils";
 
 // Chainable mixins

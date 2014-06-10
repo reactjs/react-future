@@ -1,4 +1,4 @@
-import { HTML as JSX, joinClasses } from "react-dom";
+import { HTML as JSX, mergeDOMProps } from "react-dom";
 
 // Draft
 
@@ -27,17 +27,19 @@ class FancyButton {
 
     var { color, className, style, width, height, ...miscProps } = this.props;
 
-    var button =
-      <button
-        {...miscProps}
-        className={joinClasses(className, 'FancyButton')}
-        style={{ ...style,
+    // mergeDOMProps helper implicitly merges className, style, data props
+
+    var mergedProps = mergeDOMProps(miscProps, {
+        className: 'FancyButton',
+        style: {
           backgroundColor: color,
           padding: 10,
           width: width - 10,
           height: height - 10
-        }}
-      />;
+      }
+    });
+
+    var button = <button {...mergedProps} />;
 
     /**
      * button.props === {

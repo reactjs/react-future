@@ -1,4 +1,4 @@
-import { HTML as JSX } from "react-dom";
+import { HTML as JSX, joinClasses } from "react-dom";
 
 // Draft
 
@@ -17,51 +17,27 @@ class FancyButton {
   props: FancyButtonProps; // Could this interface be inlined?
 
   render() {
-    // The linter analyses this file and notices these references to
-    // props.color, props.width and props.height.
+    // This uses rest and spread operators
+    // https://gist.github.com/sebmarkbage/aa849c7973cb4452c547
 
-    // Any consumed property needs to be explicitly overridden so that
-    // they don't accidentally leak down to the parent. We can issue a static
-    // lint warning if these are forgotten. Hence the weird undefined props
-    // below. Unsolved issue: Since this props now have too many unknown keys,
-    // how do we warn for typos?
+    // The rest operator picks off the remaining props that you're not using.
+    // The linter analyses this method and notices the JSX spread attribute.
+    // Therefore it warns you not to use this.props.propertyName and instead
+    // ask you to use destructuring with a rest property.
+
+    var { color, className, style, width, height, ...miscProps } = this.props;
 
     var button =
       <button
-        {...this.props}
-        className+=" FancyButton"
-        style={{
-          ...this.props.style,
-          backgroundColor: this.props.color,
+        {...miscProps}
+        className={joinClasses(className, 'FancyButton')}
+        style={{ ...style,
+          backgroundColor: color,
           padding: 10,
-          width: this.props.width - 10,
-          height: this.props.height - 10
+          width: width - 10,
+          height: height - 10
         }}
-        color={undefined}
-        width={undefined}
-        height={undefined}
       />;
-
-    /**
-     * The spread operator and += in JSX desugars to:
-     *
-     * HTML.button(Object.assign(
-     *   {},
-     *   this.props,
-     *   {
-     *     className: this.props.className + ' FancyButton',
-     *     style: Object.assign({}, this.props.style, {
-     *       backgroundColor: this.props.color,
-     *       padding: 10,
-     *       width: this.props.width - 10,
-     *       height: this.props.height - 10
-     *     }),
-     *     color: undefined,
-     *     width: undefined,
-     *     height: undefined
-     *   }
-     * ));
-    */
 
     /**
      * button.props === {
@@ -72,10 +48,7 @@ class FancyButton {
      *     padding: 10,
      *     width: 90,
      *     height: 40
-     *   },
-     *   color: undefined,
-     *   width: undefined,
-     *   height: undefined
+     *   }
      * }
      */
 

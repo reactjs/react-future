@@ -16,20 +16,18 @@ class FancyButton {
 
   props: FancyButtonProps; // Could this interface be inlined?
 
-  render() {
-    // This uses rest and spread operators
-    // https://gist.github.com/sebmarkbage/aa849c7973cb4452c547
+  // This uses rest and spread operators
+  // https://gist.github.com/sebmarkbage/aa849c7973cb4452c547
 
+  render({ color, className, style, width, height, ...other }) {
     // The rest operator picks off the remaining props that you're not using.
     // The linter analyses this method and notices the JSX spread attribute.
     // Therefore it warns you not to use this.props.propertyName and instead
     // ask you to use destructuring with a rest property.
 
-    var { color, className, style, width, height, ...miscProps } = this.props;
-
     var button =
       <button
-        {...miscProps}
+        {...other}
         className={joinClasses(className, 'FancyButton')}
         style={{ ...style,
           backgroundColor: color,

@@ -1,4 +1,4 @@
-import { HTML as JSX, joinClasses } from "react-dom";
+import { HTML as JSX } from "react-dom";
 
 // Draft
 
@@ -19,7 +19,7 @@ class FancyButton {
   // This uses rest and spread operators
   // https://gist.github.com/sebmarkbage/aa849c7973cb4452c547
 
-  render({ color, className, style, width, height, ...other }) {
+  render({ color, classList, style, width, height, ...other }) {
     // The rest operator picks off the remaining props that you're not using.
     // The linter analyses this method and notices the JSX spread attribute.
     // Therefore it warns you not to use this.props.propertyName and instead
@@ -28,8 +28,8 @@ class FancyButton {
     var button =
       <button
         {...other}
-        className={joinClasses(className, 'FancyButton')}
-        style={{ ...style,
+        classList={[ ..., 'FancyButton' ]}
+        style={{ ...,
           backgroundColor: color,
           padding: 10,
           width: width - 10,
@@ -39,7 +39,7 @@ class FancyButton {
 
     /**
      * button.props === {
-     *   className: 'test FancyButton',
+     *   classList: ['test', 'FancyButton'],
      *   disabled: true,
      *   style: {
      *     backgroundColor: 'blue',
@@ -60,7 +60,7 @@ class App {
   render() {
     var fancyButton =
       <FancyButton
-        className="test"
+        classList={["test"]}
         disabled={true}
         width={100}
         height={50}
@@ -69,7 +69,7 @@ class App {
     /**
      * fancyButton.props === {
      *   color: 'blue',
-     *   className: 'test',
+     *   classList: ['test'],
      *   disabled: true,
      *   width: 100,
      *   height: 50

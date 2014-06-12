@@ -7,7 +7,7 @@
 
 {
   type: Button,
-  props: { bar: "baz", anotherProp: "it's default value" },
+  props: { ...(Button.defaultProps || {}), bar: "baz" },
   scope: this,
   // It could potentially be tagged with a shared prototype.
   __proto__: JSX.Descriptor

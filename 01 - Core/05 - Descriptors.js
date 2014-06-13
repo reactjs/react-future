@@ -48,9 +48,9 @@
 
 var C = React.createDescriptor;
 
-C(Button, { foo: 'bar', key: 'mybutton', ref: myButtonRef },
-  C('span', null, a),
-  C('span', null, b)
+C({ type: Button, foo: 'bar', key: 'mybutton', ref: myButtonRef },
+  C({ type: 'span' }, a),
+  C({ type: 'span' }, b)
 )
 
 /**
@@ -106,7 +106,7 @@ var t1, t2;
 /**
  * TEMPLATE STRINGS
  *
- * You could great an add-on sugar which uses ES6 template strings to create
+ * You could create an add-on sugar which uses ES6 template strings to create
  * descriptors. It becomes more palatable if all your components are registered
  * through strings.
  */

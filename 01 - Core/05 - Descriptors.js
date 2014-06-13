@@ -61,15 +61,15 @@ C({ type: Button, foo: 'bar', key: 'mybutton', ref: myButtonRef },
 /**
  * FAST MODE
  *
- * Fast mode allocates the final props object inline instead of cloning a
- * temporary object. If defaultProps can be statically resolved, their value is
- * inlined (baz: 1) instead of dynamically resolved. This should not be typed
- * manually in user code.
+ * Fast mode allocates a props object inline instead of cloning a temporary
+ * object. type, key and ref are separate arguments. Default props gets merged
+ * in by mutating the props object. If they can be statically inferred, they
+ * could also be inlined instead. This should not be typed in user code.
  */
 
 var F = React.createDescriptorFast;
 
-F(Button, 'mybutton', myButtonRef, { foo: 'bar', baz: 1, children: [
+F(Button, 'mybutton', myButtonRef, { foo: 'bar', children: [
   F('span', null, null, a),
   F('span', null, null, b)
 ]})

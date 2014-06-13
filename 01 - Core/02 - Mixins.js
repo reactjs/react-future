@@ -1,5 +1,3 @@
-import { Component } from "react";
-import { HTML as JSX } from "react-dom";
 import { mixin } from "react-utils";
 
 // Chainable mixins
@@ -44,9 +42,12 @@ class C extends mixin(A, B) {
 C.getQueries(); // B, C
 new C().componentDidMount(); // B, A, C
 
+
+import { Component } from "react";
+
 // A component that mixes in all of C's functionality
 
-class Component extends mixin(React.Component, C) {
+class Component extends mixin(Component, C) {
   render() {
     return <div />;
   }

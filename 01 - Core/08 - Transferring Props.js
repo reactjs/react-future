@@ -1,8 +1,8 @@
-import { HTML as JSX, joinClasses } from "react-dom";
+import { HTMLProps, joinClasses } from "react-dom";
 
 // Draft
 
-interface FancyButtonProps extends typeof JSX.button.prototype.props {
+interface FancyButtonProps extends typeof HTMLProps.button {
     color: string,
     width: number,
     height: number

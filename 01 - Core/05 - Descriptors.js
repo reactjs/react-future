@@ -70,8 +70,8 @@ C({ type: Button, foo: 'bar', key: 'mybutton', ref: myButtonRef },
 var F = React.createDescriptorFast;
 
 F(Button, 'mybutton', myButtonRef, { foo: 'bar', children: [
-  F('span', null, null, a),
-  F('span', null, null, b)
+  F('span', null, null, { children: a }),
+  F('span', null, null, { children: b })
 ]})
 
 /**
@@ -85,10 +85,10 @@ var P = React.getPooledDescriptor;
 var A = React.getPooledArray;
 var t1, t2;
 
-(t1 = P(Button, 'mybutton', myButtonRef), t1.props.foo = 'bar', t1.props.children = A(
-  (t2 = P('span'), t2.props.children = a, t2),
-  (t2 = P('span'), t2.props.children = b, t2)
-), t1)
+(t1 = P(Button, 'mybutton', myButtonRef), t1.props.foo = 'bar', t1.props.children = A(2),
+  t1.props.children[0] = (t2 = P('span'), t2.props.children = a, t2),
+  t1.props.children[1] = (t2 = P('span'), t2.props.children = b, t2),
+, t1)
 
 /**
  * NATIVE COMPONENTS

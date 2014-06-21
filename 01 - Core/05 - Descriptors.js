@@ -12,8 +12,7 @@
 {
   type: Button,
   props: {
-    ...Button.defaultProps, // optional
-    foo: 'bar',
+    foo: bar,
     children: [
       { type: 'span', props: { children: a } },
       { type: 'span', props: { children: b } }
@@ -22,57 +21,68 @@
 
   // optional
   key: 'mybutton',
-  ref: myButtonRef,
-
-  // optional
-  owner: React.currentOwner,
-  context: React.currentContext
+  ref: myButtonRef
 }
 
 /**
  * JSX
  */
 
-<Button foo="bar" key="mybutton" ref={myButtonRef}>
+<Button foo={bar} key="mybutton" ref={myButtonRef}>
  <span>{a}</span>
  <span>{b}</span>
 </Button>
 
 /**
  * PLAIN JS
+ * __DEV__ MODE
  *
  * This helper function ensures that your static children don't get the key
  * warning. It creates a descriptor for you with the current owner/context.
  * The props object is cloned and key/ref moved onto the descriptor.
  */
 
-var C = React.createDescriptor;
+var _Button = React.createFactory(Button);
+var _span = React.createFactory('span');
 
-C({ type: Button, foo: 'bar', key: 'mybutton', ref: myButtonRef },
-  C({ type: 'span' }, a),
-  C({ type: 'span' }, b)
+_Button({ foo: bar, key: 'mybutton', ref: myButtonRef },
+  _span(null, a),
+  _span(null, b)
 )
 
 /**
- * If you use JSX or statically can analyze that the C(...) call belongs to
+ * If you use JSX, or can statically analyze that the Factory calls belongs to
  * React, then you can chose to opt-in to one of the optimizations modes.
  */
 
 /**
- * FAST MODE
+ * INLINE
+ * PRODUCTION MODE
  *
- * Fast mode allocates a props object inline instead of cloning a temporary
- * object. type, key and ref are separate arguments. Default props gets merged
- * in by mutating the props object. If they can be statically inferred, they
- * could also be inlined instead. This should not be typed in user code.
+ * Inline mode simply creates the descriptor objects inline in the code, with
+ * a lookup for current owner/context as well as resolving default props.
+ * If defaults aren't known statically, then we create a factory that can help
+ * assign defaults quickly on the newly created object.
  */
 
-var F = React.createDescriptorFast;
+var Button_assignDefaults = React.createDefaultsFactory(Button);
 
-F(Button, 'mybutton', myButtonRef, { foo: 'bar', children: [
-  F('span', null, null, { children: a }),
-  F('span', null, null, { children: b })
-]})
+{
+  type: Button,
+  props: Button_assignDefaults({
+    foo: bar,
+    children: [
+      { type: 'span', props: { children: a }, key: null, ref: null, _owner: React._currentOwner, _context: React._currentContext },
+      { type: 'span', props: { children: b }, key: null, ref: null, _owner: React._currentOwner, _context: React._currentContext }
+    ]
+  }),
+
+  key: 'mybutton',
+  ref: myButtonRef,
+
+  _owner: React._currentOwner,
+  _context: React._currentContext
+}
 
 /**
  * POOLED MODE
@@ -81,14 +91,34 @@ F(Button, 'mybutton', myButtonRef, { foo: 'bar', children: [
  * from an pool and reuses them. It overrides the props on the pooled object.
  */
 
-var P = React.getPooledDescriptor;
-var A = React.getPooledArray;
-var t1, t2;
+var P1 = React.createDescriptorPool({
+  type: Button,
+  key: 'mybutton',
+  props: {
+    foo: null,
+    children: null
+  }
+});
+var P2 = React.createDescriptorPool({
+  type: 'span',
+  props: {
+    children: null
+  }
+});
+var A2 = React.createArrayPool(2); // Number of items in the array
+var t1, t1p, t1c, t2;
 
-(t1 = P(Button, 'mybutton', myButtonRef), t1.props.foo = 'bar', t1.props.children = A(2),
-  t1.props.children[0] = (t2 = P('span'), t2.props.children = a, t2),
-  t1.props.children[1] = (t2 = P('span'), t2.props.children = b, t2),
-, t1)
+(
+  t1 = P1(),
+  t1.ref = myButtonRef,
+  t1p = t1.props,
+  t1p.foo = bar,
+  t1p.children = A2(),
+  t1c = t1p.children,
+  t1c[0] = (t2 = P2(), t2.props.children = a, t2),
+  t1c[1] = (t2 = P2(), t2.props.children = b, t2),
+  t1
+)
 
 /**
  * NATIVE COMPONENTS
@@ -97,10 +127,6 @@ var t1, t2;
  * just strings. JSX will convert any lower-case tag name, or if it has a dash,
  * into a string value instead of a scope reference. This makes them compatible
  * with custom tags (Web Components).
- *
- * There's no direct dependency between a component and the React runtime.
- *
- * A tree of just native components should be JSON serializable.
  */
 
 /**
@@ -112,7 +138,7 @@ var t1, t2;
  */
 
 X`
- <my-button foo="bar" key="mybutton" ref=${myButtonRef}>
+ <my-button foo=${bar} key="mybutton" ref=${myButtonRef}>
    <span>${a}</span>
    <span>${b}</span>
  </my-button>

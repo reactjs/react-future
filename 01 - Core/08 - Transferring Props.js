@@ -1,12 +1,6 @@
-import { HTMLProps, joinClasses } from "react-dom";
+import { HTMLPropTypes, joinClasses } from "react-dom";
 
 // Draft
-
-interface FancyButtonProps extends typeof HTMLProps.button {
-    color: string,
-    width: number,
-    height: number
-}
 
 class FancyButton {
 
@@ -14,7 +8,12 @@ class FancyButton {
     color: 'blue'
   };
 
-  props: FancyButtonProps; // Could this interface be inlined?
+  props: {
+    color: string,
+    width: number,
+    height: number,
+    ...HTMLPropTypes
+  },
 
   // This uses rest and spread operators
   // https://gist.github.com/sebmarkbage/aa849c7973cb4452c547

@@ -12,11 +12,11 @@ function handleClick({ onClick = console.log }, { count = 0 }, event) {
   return { count: count + 1 };
 }
 
-export function Counter(props = { width: 100 }, state = { count: 0 }) {
+export function Counter({ width = 100 }, state = { count: 0 }) {
   return (
     <div>
       Clicked {state.count} times
-      <button onClick={this(handleClick)} style={{ width: props.width }} />
+      <button onClick={this(handleClick)} style={{ width }} />
     </div>
   );
 }

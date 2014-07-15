@@ -27,7 +27,7 @@ export function Counter({ width = 100 }, state = { count: 0 }) {
 
 export const defaultProps = { onClick: console.log, width: 100 };
 
-export const getInitialState = (props) => { count: 0 };
+export const getInitialState = (props) => ({ count: 0 });
 
 function handleClick(props, state, event) {
   if (event.button === 2) {

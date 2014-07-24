@@ -20,7 +20,7 @@ __Core__
   2. [Mixins](./01 - Core/02 - Mixins.js)
   3. [Stateless Functions](./01 - Core/03 - Stateless Functions.js)
   4. [Modules](./01 - Core/04 - Modules.js)
-  5. [Descriptor Factories](./01 - Core/05 - Descriptor Factories.js)
+  5. [Elements](./01 - Core/05 - Elements.js)
   6. [Refs](./01 - Core/06 - Refs.js)
   7. [Imperative Bridge](./01 - Core/07 - Imperative Bridge.js)
 

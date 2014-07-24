@@ -64,7 +64,7 @@ class Foo {
   }
 
 
-// An alternative idea... Make descriptors into ref-promises.
+// An alternative idea... Make elements into ref-promises.
 
   render() {
     var foo = <Foo />;

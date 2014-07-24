@@ -1,11 +1,11 @@
 /**
- * DESCRIPTOR OBJECT LITERAL
+ * ELEMENT OBJECT LITERAL
  *
  * A React component module will no longer export a helper function to create
- * descriptors. Instead it's the responsibility of the consumer to efficiently
- * create the descriptors.
+ * virtual elements. Instead it's the responsibility of the consumer to
+ * efficiently create the virtual element.
  * 
- * Languages that compile to JS can choose to implement the descriptor signature
+ * Languages that compile to JS can choose to implement the element signature
  * in whatever way is idiomatic for that language:
  */
 
@@ -38,8 +38,8 @@
  * __DEV__ MODE
  *
  * This helper function ensures that your static children don't get the key
- * warning. It creates a descriptor for you with the current owner/context.
- * The props object is cloned and key/ref moved onto the descriptor.
+ * warning. It creates an element for you with the current owner/context.
+ * The props object is cloned and key/ref moved onto the element.
  */
 
 var _Button = React.createFactory(Button);
@@ -59,7 +59,7 @@ _Button({ foo: bar, key: 'mybutton', ref: myButtonRef },
  * INLINE
  * PRODUCTION MODE
  *
- * Inline mode simply creates the descriptor objects inline in the code, with
+ * Inline mode simply creates the element objects inline in the code, with
  * a lookup for current owner/context as well as resolving default props.
  * If defaults aren't known statically, then we create a factory that can help
  * assign defaults quickly on the newly created object.
@@ -91,7 +91,7 @@ var Button_assignDefaults = React.createDefaultsFactory(Button);
  * from an pool and reuses them. It overrides the props on the pooled object.
  */
 
-var P1 = React.createDescriptorPool({
+var P1 = React.createElementPool({
   type: Button,
   key: 'mybutton',
   props: {
@@ -99,7 +99,7 @@ var P1 = React.createDescriptorPool({
     children: null
   }
 });
-var P2 = React.createDescriptorPool({
+var P2 = React.createElementPool({
   type: 'span',
   props: {
     children: null
@@ -133,7 +133,7 @@ var t1, t1p, t1c, t2;
  * TEMPLATE STRINGS
  *
  * You could create an add-on sugar which uses ES6 template strings to create
- * descriptors. It becomes more palatable if all your components are registered
+ * elements. It becomes more palatable if all your components are registered
  * through strings.
  */
 

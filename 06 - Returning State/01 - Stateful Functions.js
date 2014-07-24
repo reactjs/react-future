@@ -18,7 +18,7 @@ function handleClick(props, state, event) {
 }
 
 // The component itself is a single function that accepts props and state as
-// arguments and returns a new descriptor. Effectively the render method.
+// arguments and returns a new element. Effectively the render method.
 // If callbacks are suppose to do any updates to state (or cause side-effects),
 // they will need to be wrapped before passed down. Conveniently, the "this"
 // argument will be a function that can be used to wrap callbacks.

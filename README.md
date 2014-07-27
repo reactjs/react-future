@@ -36,8 +36,14 @@ __Layout__
 __Embedded Queries__
  - (TBD)
 
-__Far Future__
- - (TBD)
+__Returning State__
+  1. [Stateful Functions](./06 - Returning State/01 - Stateful Functions.js)
+  2. [Module Pattern](./06 - Returning State/02 - Module Pattern.js)
+  3. [Default Props and Initial State](./06 - Returning State/03 - Default Props and Initial State.js)
+
+__Types__
+  1. [Elements](./07 - Types/01 - Elements.js)
+  2. [DOM Elements](./07 - Types/02 - DOM Elements.js)
 
 Syntax
 ------

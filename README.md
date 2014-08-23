@@ -3,7 +3,7 @@ The Future of React(?)
 
 Welcome to the potential future of React projects. This repo is showcasing
 example code for APIs that we have not yet implemented nor agreed on.
-It's purpose is to provide a platform for discussing future changes. It also
+Its purpose is to provide a platform for discussing future changes. It also
 provides a shared goal so that we can figure out how to incrementally get to our
 ideal API.
 

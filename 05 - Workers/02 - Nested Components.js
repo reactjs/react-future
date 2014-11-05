@@ -9,8 +9,8 @@ const AnotherCrossThreadComponent = "Baz";
 // By prerendering the same-thread components we can pass their opaque result
 // into a cross-thread element. The component on the other side cannot reason
 // about the content of the cross-thread element but it can render it anywhere
-// in it's own tree. That means that the pre-rendered child can directly
-// manipulate it's content without first asking the parent on the other thread.
+// in its own tree. That means that the pre-rendered child can directly
+// manipulate its content without first asking the parent on the other thread.
 
 // This implementation detail can be hidden in a wrapper.
 

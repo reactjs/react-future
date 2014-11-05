@@ -31,19 +31,26 @@ __Animations__
   - (TBD)
 
 __Layout__
-  - (TBD)
+  1. [Primitives](./04 - Layout/01 - Primitives.js)
+  2. [Layout Components](./04 - Layout/02 - Layout Components.js)
+  3. [Usage](./04 - Layout/03 - Usage.js)
+  4. [Inline Styles](./04 - Layout/04 - Inline Styles.md)
+
+__Workers__
+  1. [Serializable Elements](./05 - Workers/01 - Serializable Elements.js)
+  2. [Nested Components](./05 - Workers/02 - Nested Components.js)
 
 __Embedded Queries__
  - (TBD)
 
 __Returning State__
-  1. [Stateful Functions](./06 - Returning State/01 - Stateful Functions.js)
-  2. [Module Pattern](./06 - Returning State/02 - Module Pattern.js)
-  3. [Default Props and Initial State](./06 - Returning State/03 - Default Props and Initial State.js)
+  1. [Stateful Functions](./07 - Returning State/01 - Stateful Functions.js)
+  2. [Module Pattern](./07 - Returning State/02 - Module Pattern.js)
+  3. [Default Props and Initial State](./07 - Returning State/03 - Default Props and Initial State.js)
 
 __Types__
-  1. [Elements](./07 - Types/01 - Elements.js)
-  2. [DOM Elements](./07 - Types/02 - DOM Elements.js)
+  1. [Elements](./08 - Types/01 - Elements.js)
+  2. [DOM Elements](./08 - Types/02 - DOM Elements.js)
 
 Syntax
 ------

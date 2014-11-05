@@ -11,7 +11,7 @@ class Fragment {
   }
 }
 
-// Position it's content with an offset of `x` and `y`
+// Position its content with an offset of `x` and `y`
 class Positioner {
   render() {
     var { x, y, children } = this.props;

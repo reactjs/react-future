@@ -38,8 +38,8 @@ class CounterExample {
   }
 }
 
-// This doesn't work because, a React parent component is responsible for
-// resolving it's children. The CrossThreadComponent would have to block
+// This doesn't work because a React parent component is responsible for
+// resolving its children. The CrossThreadComponent would have to block
 // rendering to come back to this thread to ask the SameThreadComponent to
 // resolve itself. This defeats the purpose of asynchronously resolving these.
 // However, luckily we have a solution around that using prerendering which

@@ -46,6 +46,7 @@ class VerticalList {
     // recalculate it here. This is helpful in the cases where a parent decides
     // not to render this child. That way we can avoid calling render.
     var totalHeight = 0;
+    var children = this.prerendered;
     for (var i = 0; i < children.length; i++) {
       totalHeight += children[i].result.layoutHeight;
     }

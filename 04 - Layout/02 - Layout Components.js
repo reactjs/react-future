@@ -1,7 +1,7 @@
 // Layout System Example Components
 
 // The Vertical List can layout items in vertically based on their dynamic
-// height. It also provides it's own total height so that it can be used as
+// height. It also provides its own total height so that it can be used as
 // an item within itself.
 
 class VerticalList {

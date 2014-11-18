@@ -9,21 +9,21 @@ export class Button extends Component {
   // compatible syntax. Notice the subtle syntax difference between the colon
   // and the equal sign.
   props : {
-    width: number
-  }
+    width: ?number;
+  };
 
   // Default properties can be defined as a static property initializer.
   // The value of each property is shallow copied onto the final props object.
   static defaultProps = {
     width: 100
-  }
+  };
 
   // Initial state is defined using a property initializer. In this simple
   // form it behaves identical to TypeScript. You may refer to this.props
   // within this initializer to make intial state a function of props.
   state = {
     counter: Math.round(this.props.width / 10)
-  }
+  };
 
   // Instead of relying on auto-binding magic inside React, we use a property
   // initializer with an arrow function. This effectively creates a single
@@ -31,7 +31,7 @@ export class Button extends Component {
   handleClick = (event) => {
     event.preventDefault();
     this.setState({ counter: this.state.counter + 1 });
-  }
+  };
 
   // Props and state are passed into render as a convenience to avoid the need
   // for aliasing or referring to `this`.

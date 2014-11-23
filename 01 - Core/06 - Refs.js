@@ -97,3 +97,22 @@ class Foo {
 
 }
 
+// Getting your "own" DOM node is still possible with a call to traverse the
+// composites until you get to the DOM node.
+
+class Foo {
+
+  handleTick() {
+    var node = React.findDOMNode(this);
+    this.setState({ width: node.offsetWidth });
+  }
+
+  render() {
+    return (
+      <C tick={this.handleTick}>
+        <div />
+      </C>
+    );
+  }
+
+}

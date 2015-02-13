@@ -28,7 +28,7 @@ class Box {
   render() {
     var { width, height } = this.props;
     return (
-      <div style={{ width: width, height: height, background: '#f00' }}>
+      <div style={{ width, height, background: '#f00' }}>
         {children}
       </div>
     );

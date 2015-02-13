@@ -35,7 +35,7 @@ class App {
     return (
       <CrossThreadComponentWrapper prop="bar" callback={data => log(data)}>
         <SameThreadComponent prop="foo" />
-      </CrossThreadComponent>
+      </CrossThreadComponentWrapper>
     );
   }
 }

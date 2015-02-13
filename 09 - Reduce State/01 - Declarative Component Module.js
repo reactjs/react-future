@@ -36,7 +36,7 @@ export default let FancyButton = {
       if (click.button === 1) {
         return { count: 0, name: data };
       }
-      return { count: previousState.count + 1, name: data };
+      return { count: state.count + 1, name: data };
     }
     return state;
   },

@@ -30,7 +30,7 @@ export default let FancyButton = {
 
   // reduce whenever a signal fires into new state
   reduce(props, state, signals) {
-    let data = singals.data || state.data;
+    let data = signals.data || state.data;
     let click = signals.button.click;
     if (click) {
       if (click.button === 1) {

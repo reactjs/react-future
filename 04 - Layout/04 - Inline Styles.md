@@ -53,20 +53,20 @@ All the core components accept a style attribute
 which also accepts an array of styles
 
 ```javascript
-<div style={[style.base, style.background]} />
+<div style={[styles.base, styles.background]} />
 ```
 
 A common pattern is to conditionally add a style based on some condition. The style attribute will ignore `false`, `undefined` and `null` entries.
 
 ```javascript
-<div style={[style.base, this.state.active && style.active]} />
+<div style={[styles.base, this.state.active && styles.active]} />
 ```
 
 Finally, if you really have to, you can also use inline styles, but they are highly discouraged. Put them last in the array definition.
 
 ```javascript
 <div
-  style={[style.base, {
+  style={[styles.base, {
     width: this.state.width,
     height: this.state.width * this.state.aspectRatio
   }]}

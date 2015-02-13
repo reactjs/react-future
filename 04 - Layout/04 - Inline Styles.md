@@ -83,13 +83,11 @@ var List = React.createClass({
     elementStyle: StylePropType
   },
   render: function() {
-    return this.transferPropsTo(
-      <div>
-        {elements.map((element) =>
-          <div style={[styles.element, this.props.elementStyle]} />
-        )}
-      </div>
-    );
+    return <div {...this.props}>
+      {elements.map((element) =>
+        <div style={[styles.element, this.props.elementStyle]} />
+      )}
+    </div>;
   }
 });
 

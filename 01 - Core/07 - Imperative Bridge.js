@@ -5,7 +5,7 @@ import { Renderer } from "react-dom";
 // that are top level. This magically turns props into state instead of being
 // modeled outside the component. This undermines the integrity of props
 // in a component tree. Instead, we want to add a wrapper that saves these
-// values as it's own internal state. You can imperatively update the
+// values as its own internal state. You can imperatively update the
 // props using setters on the renderer instances. These gets flushed down to
 // the underlying component class.
 

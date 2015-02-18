@@ -88,7 +88,7 @@ var Button_assignDefaults = React.createDefaultsFactory(Button);
  * POOLED MODE
  *
  * Pooled mode doesn't allocate any new objects. Instead it gets mutable objects
- * from an pool and reuses them. It overrides the props on the pooled object.
+ * from a pool and reuses them. It overrides the props on the pooled object.
  */
 
 var P1 = React.createElementPool({

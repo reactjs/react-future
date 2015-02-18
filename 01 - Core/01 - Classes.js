@@ -20,7 +20,7 @@ export class Button extends Component {
 
   // Initial state is defined using a property initializer. In this simple
   // form it behaves identical to TypeScript. You may refer to this.props
-  // within this initializer to make intial state a function of props.
+  // within this initializer to make initial state a function of props.
   state = {
     counter: Math.round(this.props.width / 10)
   }

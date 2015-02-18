@@ -1,6 +1,6 @@
 // A simple component, that isn't stateful, can be provided as a single
 // function that accepts props. This provides React with a hint that this
-// component can be collapsed and that it's state doesn't need to be preserved.
+// component can be collapsed and that its state doesn't need to be preserved.
 // It also encourages micro-componentization instead of custom helper functions
 // outside the system.
 export function Button(props : { width: number, onClick: function }) {

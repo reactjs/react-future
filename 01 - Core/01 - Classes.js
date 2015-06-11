@@ -33,9 +33,9 @@ export class Button extends Component {
     this.setState({ counter: this.state.counter + 1 });
   }
 
-  // Props and state are passed into render as a convenience to avoid the need
-  // for aliasing or referring to `this`.
-  render(props, state) {
+  // Props, state and context are passed into render as a convenience to avoid
+  // the need for aliasing or referring to `this`.
+  render(props, state, context) {
     return (
       <div>
         This button has been clicked: {state.counter} times

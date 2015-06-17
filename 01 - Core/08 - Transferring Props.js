@@ -79,3 +79,61 @@ class App {
   }
 
 }
+
+
+// Vanilla JS:
+// While rest and spread operators are being waited on (https://gist.github.com/sebmarkbage/aa849c7973cb4452c547) 
+// And while we wait on shims, simple helper methods and array destructuring can be used:
+
+class FancyButton {
+
+  static defaultProps = {
+    color: 'blue'
+  };
+
+  props: {
+    color: string,
+    width: number,
+    height: number,
+    ...HTMLPropTypes
+  },
+
+  // This uses rest and spread operators
+  // https://gist.github.com/sebmarkbage/aa849c7973cb4452c547
+
+  render(props, state) {
+    
+    var [{color}, {className}, {style}, {width}, {height}, ...other] = arryFromProps(props);
+
+    var button = React.DOM.button(
+      propsFromArray([
+        ...other,
+        ['className', joinClasses(className, 'FancyButton')],
+        ['padding', 10],
+        ['width', width - 10],
+        ['height', height - 10]
+      ])
+    );
+
+    return button;
+  }
+
+}
+
+// further a mixin could be used to do arrayFromProps automatically.
+
+// Implementations of Helper Methods.
+function arrayFromProps(props){
+  var array = [];
+  // this uses the for-of loop, but it could easily be implemented otherwise.
+  for ([key, value] of props) {
+    array.push([key, value]);
+  }
+  return array;
+}
+
+function propsFromArray(array){
+  return array.reduce((obj, prop) => {
+    obj[prop[0]] = obj[1];
+  }, {})
+}

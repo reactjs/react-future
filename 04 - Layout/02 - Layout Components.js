@@ -68,5 +68,8 @@ class VerticalListItem {
     return {
       layoutHeight: this.props.height
     };
+    
+    // Chrome is trying deliver an API to measure the size Nodes,
+    // by rendering them outside the DOM, that should be kept in mind here.
   }
 }

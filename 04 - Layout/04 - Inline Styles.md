@@ -93,3 +93,19 @@ var List = React.createClass({
 
 <List style={styles.list} elementStyle={styles.element} />
 ```
+
+## Drawbacks
+
+This approach will generally result in much better rendering performance, as it removes stylesheet complexity. However it does have a few shortcomings/challenges.
+
+There are many CSS properties that simply cannot be applied with inline styles. This includes all pseudo selectors (:hover, :focus, :active, etc) as well as pseudo-elements.
+
+Various states, like :hover, :focus can be worked around with javascript event handlers. This has the downside of relying on javascript.
+
+Other pseudo selectors, such as, :first-child, nth-child, etc, can be easily accounted for with javascript and actually helps with a better API.
+
+Pseudo elements (such as ::before, ::after) are simply impossible to achieve with inline-styles, but at the same time, strictly speaking, it should always be possible to replace them with real elements. The downside here, is that we may lose the semantic structure of the DOM because of this.
+
+To summarize, the major drawbacks are
+— Dependence on JS for :hover, :active etc.
+- Losing the semantic benefits of Pseudo elements by using real elements

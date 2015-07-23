@@ -26,7 +26,7 @@ class Positioner {
 // Paint a box with size `width` and `height`
 class Box {
   render() {
-    var { width, height } = this.props;
+    var { width, height, children } = this.props;
     return (
       <div style={{ width, height, background: '#f00' }}>
         {children}

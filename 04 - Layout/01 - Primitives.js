@@ -14,7 +14,7 @@ class Fragment {
 // Position its content with an offset of `x` and `y`
 class Positioner {
   render() {
-    var { x, y, children } = this.props;
+    const { x, y, children } = this.props;
     return (
       <div style={{ position: 'absolute', left: x, top: y }}>
         {children}
@@ -26,7 +26,7 @@ class Positioner {
 // Paint a box with size `width` and `height`
 class Box {
   render() {
-    var { width, height, children } = this.props;
+    const { width, height, children } = this.props;
     return (
       <div style={{ width, height, background: '#f00' }}>
         {children}

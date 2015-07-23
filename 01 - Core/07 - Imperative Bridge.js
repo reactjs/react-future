@@ -9,7 +9,7 @@ import { Renderer } from "react-dom";
 // props using setters on the renderer instances. These gets flushed down to
 // the underlying component class.
 
-var button = new Renderer(<Button foo="bar" />);
+const button = new Renderer(<Button foo="bar" />);
 
 // Insertion is done by exposing a rendered top-level element which can be
 // inserted anywhere in the DOM.

@@ -24,7 +24,7 @@ class FancyButton {
     // Therefore it warns you not to use this.props.propertyName and instead
     // ask you to use destructuring with a rest property.
 
-    var button =
+    const button =
       <button
         {...other}
         className={joinClasses(className, 'FancyButton')}
@@ -57,7 +57,7 @@ class FancyButton {
 class App {
 
   render() {
-    var fancyButton =
+    const fancyButton =
       <FancyButton
         className="test"
         disabled={true}

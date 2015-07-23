@@ -42,8 +42,8 @@
  * The props object is cloned and key/ref moved onto the element.
  */
 
-var _Button = React.createFactory(Button);
-var _span = React.createFactory('span');
+const _Button = React.createFactory(Button);
+const _span = React.createFactory('span');
 
 _Button({ foo: bar, key: 'mybutton', ref: myButtonRef },
   _span(null, a),
@@ -65,7 +65,7 @@ _Button({ foo: bar, key: 'mybutton', ref: myButtonRef },
  * assign defaults quickly on the newly created object.
  */
 
-var Button_assignDefaults = React.createDefaultsFactory(Button);
+const Button_assignDefaults = React.createDefaultsFactory(Button);
 
 {
   type: Button,
@@ -91,7 +91,7 @@ var Button_assignDefaults = React.createDefaultsFactory(Button);
  * from a pool and reuses them. It overrides the props on the pooled object.
  */
 
-var P1 = React.createElementPool({
+const P1 = React.createElementPool({
   type: Button,
   key: 'mybutton',
   props: {
@@ -99,14 +99,14 @@ var P1 = React.createElementPool({
     children: null
   }
 });
-var P2 = React.createElementPool({
+const P2 = React.createElementPool({
   type: 'span',
   props: {
     children: null
   }
 });
-var A2 = React.createArrayPool(2); // Number of items in the array
-var t1, t1p, t1c, t2;
+const A2 = React.createArrayPool(2); // Number of items in the array
+let t1, t1p, t1c, t2;
 
 (
   t1 = P1(),

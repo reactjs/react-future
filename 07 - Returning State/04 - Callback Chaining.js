@@ -18,12 +18,17 @@ let Foo = (props, state = { dir: 1 }, update) => {
   return <div onClick={handleToggle} />;
 };
 
-let Bar = (props, state = { counter: 0 }, update) => {
+type Props = { addition ?: number };
+type State = { counter : number };
+export type Bar = (Props, State, Updator) => Element;
+export let Bar : Bar = (props, state = { counter: 0 }, update) => {
+
+  let { addition = 1 } = props; // Default props
 
   let handleToggle = (value) => update({ counter: state.counter + value });
 
   let handleClick = () => {
-    return update({ counter: state.counter + 1 });
+    return update({ counter: state.counter + addition });
   };
 
   return (
@@ -34,3 +39,15 @@ let Bar = (props, state = { counter: 0 }, update) => {
 
 };
 
+// Language trickery to get named arguments, default props and initial state
+// This is so not readable.
+let Baz = ({
+  // props : defaultProps : type definition
+  props : { addition = 5 } : { addition : number },
+  // state = initialProps : type definition
+  state = { counter } : { counter : number },
+  update : Updator,
+  context : any
+}) => {
+  return <Bar addition={addition} />;
+};

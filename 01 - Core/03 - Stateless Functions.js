@@ -13,7 +13,7 @@ export function Button(props : { width: number, onClick: function }) {
 }
 
 // When named exports are used, it may be valid to have multiple components
-// in the same file. Destructuring can be used to provide convenience aliasing
+// in the same file. Destructuring can be used to provide convenient aliasing
 // and defaults to props.
 export function Checkbox({ checked = true, width }) {
   return (

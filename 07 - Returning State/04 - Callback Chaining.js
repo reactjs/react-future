@@ -5,14 +5,14 @@ let Foo = (props, state = { dir: 1 }, update) => {
       var dir = -state.dir;
       return [
         // Update state
-        update({ dir }),
+        update({ ...state, dir }),
         // Let the owner know about the change, and return its new state
         props.onToggle(dir)
         // TODO: No way to get new props as a result of props potentially
         // changing as a result of this callback.
       ];
     }
-    return null;
+    return update(state);
   };
 
   return <div onClick={handleToggle} />;
@@ -25,10 +25,10 @@ export let Bar : Bar = (props, state = { counter: 0 }, update) => {
 
   let { addition = 1 } = props; // Default props
 
-  let handleToggle = (value) => update({ counter: state.counter + value });
+  let handleToggle = (value) => update({ ...state, counter: state.counter + value });
 
   let handleClick = () => {
-    return update({ counter: state.counter + addition });
+    return update({ ...state, counter: state.counter + addition });
   };
 
   return (

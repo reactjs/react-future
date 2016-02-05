@@ -1,16 +1,10 @@
 let Foo = (props, state = { dir: 1 }, update) => {
-  let handleToggle = () => {
+  function *handleToggle() {
     if (props.isActive) {
       // Invert direction
       var dir = -state.dir;
-      return [
-        // Update state
-        update({ ...state, dir }),
-        // Let the owner know about the change, and return its new state
-        props.onToggle(dir)
-        // TODO: No way to get new props as a result of props potentially
-        // changing as a result of this callback.
-      ];
+      yield update({ ...state });
+      yield props.onToggle(dir);
     }
     return update(state);
   };

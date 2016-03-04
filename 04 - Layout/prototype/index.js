@@ -34,19 +34,30 @@ function $(fn, ...args) {
 
 /* App */
 
+function Quad(props) {
+  const node = document.createElement('span');
+  node.style.background = props.background;
+  node.style.width = props.width + 'px';
+  node.style.height = props.height + 'px';
+  node.style.top = props.top + 'px';
+  node.style.left = props.left + 'px';
+  node.textContent = props.text || '';
+  return node;
+}
+
 function* Box(props) {
   const position = yield {
     width: props.width,
     height: props.height
   };
-  const node = document.createElement('span');
-  node.style.background = props.background;
-  node.style.width = props.width + 'px';
-  node.style.height = props.height + 'px';
-  node.style.top = position.top + 'px';
-  node.style.left = position.left + 'px';
-  node.textContent = props.text || '';
-  return node;
+  return $(Quad, {
+    width: props.width,
+    height: props.height,
+    background: props.background,
+    top: position.top,
+    left: position.left,
+    text: props.text
+  });
 }
 
 function Intl(props) {
@@ -64,9 +75,7 @@ function* Horizontal(...children) {
   let x = 0;
   let y = 0;
   for (let child of children) {
-    const o = yield child;
-    const size = o.value;
-    const continuation = o.continuation;
+    const { value: size, continuation } = yield child;
     continuations.push({
       continuation: continuation,
       left: x
@@ -89,9 +98,7 @@ function* Vertical(...children) {
   let x = 0;
   let y = 0;
   for (let child of children) {
-    const o = yield child;
-    const size = o.value;
-    const continuation = o.continuation;
+    const { value: size, continuation } = yield child;
     continuations.push({
       continuation: continuation,
       top: y
@@ -107,6 +114,25 @@ function* Vertical(...children) {
     top: offset.top + child.top,
     left: offset.left
   }));
+}
+
+function* Div(props, ...children) {
+  // A "div" or "View" is something that people keep asking for. What they mean
+  // is a quad, that can be styled with background/border, behind some content.
+  // However, the interesting part is that this quad should be sized to fit all
+  // the nested content.
+  const { value: size, continuation } = yield $(Vertical, ...children);
+  const offset = yield size;
+  return [
+    $(Quad, {
+      top: offset.top,
+      left: offset.left,
+      width: size.width,
+      height: size.height,
+      background: props.background
+    }),
+    $(continuation, offset)
+  ];
 }
 
 function Text(content) {
@@ -125,8 +151,8 @@ function Awesomeness() {
 }
 
 function* Body(child) {
-  var o = yield child;
-  return $(o.continuation, {
+  const { continuation } = yield child;
+  return $(continuation, {
     top: 10,
     left: 10
   });
@@ -134,7 +160,7 @@ function* Body(child) {
 
 function App() {
   return $(Body,
-    $(Vertical,
+    $(Div, { background: '#eee' },
       $(Horizontal, $(Text, 'Hello'), $(Text, 'World!')),
       $(Intl, {
         locale: 'en-US',

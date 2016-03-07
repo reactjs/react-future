@@ -137,15 +137,15 @@ function* Div(props, ...children) {
 
 function Text(content) {
   return $(Box, {
-    width: content.length * 10,
-    height: 20,
+    width: textMeasuringContext.measureText('' + content).width,
+    height: textLineHeight,
     text: content
   });
 }
 
 function Awesomeness() {
   return $(Horizontal,
-    $(Text, 'Awesomeness Index:'),
+    $(Text, 'Awesomeness Index: '),
     $(IntlNumber, 123.45)
   );
 }
@@ -161,7 +161,7 @@ function* Body(child) {
 function App() {
   return $(Body,
     $(Div, { background: '#eee' },
-      $(Horizontal, $(Text, 'Hello'), $(Text, 'World!')),
+      $(Horizontal, $(Text, 'Hello '), $(Text, 'World!')),
       $(Intl, {
         locale: 'en-US',
         child: $(Awesomeness)
@@ -224,6 +224,13 @@ function render(element, container) {
     container.appendChild(element);
   }
 }
+
+const textMeasuringContext = document.createElement('canvas').getContext('2d');
+const rootStyle = window.getComputedStyle(
+  document.getElementById('container')
+);
+textMeasuringContext.font = rootStyle.font;
+const textLineHeight = parseInt(rootStyle.lineHeight);
 
 /* Initialization */
 

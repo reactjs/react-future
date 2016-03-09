@@ -26,7 +26,7 @@ It's a pain for the developer to have to create 2 files for every single compone
 The way to declare styles is the following
 
 ```javascript
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   base: {
     width: 38,
     height: 38
@@ -78,7 +78,7 @@ Finally, if you really have to, you can also use inline styles, but they are hig
 In order to let a call site customize the style of your component children, you can pass styles around. Use `StylePropType` in order to make sure only styles are being passed.
 
 ```javascript
-var List = React.createClass({
+const List = React.createClass({
   propTypes: {
     elementStyle: StylePropType
   },

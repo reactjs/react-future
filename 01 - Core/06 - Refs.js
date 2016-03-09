@@ -80,7 +80,7 @@ class Foo {
   myDiv = new Rx.Subject();
 
   observe() {
-    var widths = this.myDiv.map(myDivRef => myDivRef.offsetWidth);
+    const widths = this.myDiv.map(myDivRef => myDivRef.offsetWidth);
     return {
       width: this.myTick.combineLatest(widths, (e, width) => width)
     };
@@ -103,7 +103,7 @@ class Foo {
 class Foo {
 
   handleTick() {
-    var node = React.findDOMNode(this);
+    const node = React.findDOMNode(this);
     this.setState({ width: node.offsetWidth });
   }
 

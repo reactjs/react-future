@@ -1,6 +1,6 @@
 // Declarative React Component
 
-export default let FancyButton = {
+export default const FancyButton = {
 
   // getInitialState
   initialize(props) {

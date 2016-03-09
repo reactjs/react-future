@@ -60,6 +60,17 @@ function* Box(props) {
   });
 }
 
+function* FlexibleBox({ width = 0, height = 0, background }) {
+  const rect = yield { width, height };
+  return $(Quad, {
+    width: rect.width,
+    height: rect.height,
+    background: background,
+    top: rect.top,
+    left: rect.left
+  });
+}
+
 function Intl(props) {
   // TODO: Provide context
   return props.child;
@@ -158,14 +169,63 @@ function* Body(child) {
   });
 }
 
+/**
+ * Simplified Flexbox
+ */
+function* VerticalFlex(props, ...flexItems) {
+  const children = [];
+  let maxWidth = 0;
+  let flexAccumulation = 0;
+  let availableHeight = props.height;
+  for (let { item, flex = 0 } of flexItems) {
+    const { value: size, continuation } = yield item;
+    maxWidth = size.width > maxWidth ? size.width : maxWidth;
+    flexAccumulation += flex;
+    if (!flex) {
+      availableHeight -= size.height;
+    }
+    children.push({ flex, continuation, height: size.height });
+  }
+  const offset = yield { width: maxWidth, height: props.height };
+  let accumulatedTop = 0;
+  const positionedChildren = [];
+  for (let { flex, continuation, height } of children) {
+    if (flex) {
+      height = availableHeight * (flex / flexAccumulation);
+    }
+    positionedChildren.push(
+      $(continuation, {
+        top: offset.top + accumulatedTop,
+        left: offset.left,
+        width: maxWidth,
+        height: height
+      })
+    );
+    accumulatedTop += height;
+  }
+  return positionedChildren;
+}
+
+function Reflexity(child1, child2) {
+  return $(VerticalFlex, { height: 300 },
+    { item: child1 },
+    { item: $(Div, { background: '#f00' }, $(Text, 'Some stuff '), $(Text, 'in between!')) },
+    { item: $(FlexibleBox, { background: '#00f' }), flex: 1 },
+    { item: child2 },
+    { item: $(FlexibleBox, { background: '#0f0' }), flex: 0.5 }
+  );
+}
+
 function App() {
   return $(Body,
     $(Div, { background: '#eee' },
-      $(Horizontal, $(Text, 'Hello '), $(Text, 'World!')),
-      $(Intl, {
-        locale: 'en-US',
-        child: $(Awesomeness)
-      })
+      $(Reflexity,
+        $(Horizontal, $(Text, 'Hello '), $(Text, 'World!')),
+        $(Intl, {
+          locale: 'en-US',
+          child: $(Awesomeness)
+        })
+      )
     )
   );
 }
@@ -189,7 +249,6 @@ function resolveChild(child) {
         break;
       }
     }
-    // TODO: If it is a child, it needs to be resolved.
     return {
       value: rec.value,
       continuation: function(props) {

@@ -16,13 +16,14 @@ are built on top of these. You're expected to be familiar with the core
 proposals before reading the higher level examples.
 
 __Core__
-  1. [Classes](./01 - Core/01 - Classes.js)
-  2. [Mixins](./01 - Core/02 - Mixins.js)
-  3. [Stateless Functions](./01 - Core/03 - Stateless Functions.js)
-  4. [Modules](./01 - Core/04 - Modules.js)
-  5. [Elements](./01 - Core/05 - Elements.js)
-  6. [Refs](./01 - Core/06 - Refs.js)
-  7. [Imperative Bridge](./01 - Core/07 - Imperative Bridge.js)
+  1. [Classes](01%20-%20Core/01%20-%20Classes.js)
+  2. [Mixins](01%20-%20Core/02%20-%20Mixins.js)
+  3. [Stateless Functions](01%20-%20Core/03%20-%20Stateless%20Functions.js)
+  4. [Modules](01%20-%20Core/04%20-%20Modules.js)
+  5. [Elements](01%20-%20Core/05%20-%20Elements.js)
+  6. [Refs](01%20-%20Core/06%20-%20Refs.js)
+  7. [Imperative Bridge](01%20-%20Core/07%20-%20Imperative%20Bridge.js)
+  8. [Transferring Props](01%20-%20Core/08%20-%20Transferring%20Props.js)
 
 __Web Components__
   - (TBD)
@@ -31,26 +32,31 @@ __Animations__
   - (TBD)
 
 __Layout__
-  1. [Primitives](./04 - Layout/01 - Primitives.js)
-  2. [Layout Components](./04 - Layout/02 - Layout Components.js)
-  3. [Usage](./04 - Layout/03 - Usage.js)
-  4. [Inline Styles](./04 - Layout/04 - Inline Styles.md)
+  1. [Primitives](04%20-%20Layout/01%20-%20Primitives.js)
+  2. [Layout Components](04%20-%20Layout/02%20-%20Layout%20Components.js)
+  3. [Usage](04%20-%20Layout/03%20-%20Usage.js)
+  4. [Inline Styles](04%20-%20Layout/04%20-%20Inline%20Styles.md)
 
 __Workers__
-  1. [Serializable Elements](./05 - Workers/01 - Serializable Elements.js)
-  2. [Nested Components](./05 - Workers/02 - Nested Components.js)
+  1. [Serializable Elements](05%20-%20Workers/01%20-%20Serializable%20Elements.js)
+  2. [Nested Components](05%20-%20Workers/02%20-%20Nested%20Components.js)
 
 __Embedded Queries__
  - (TBD)
 
 __Returning State__
-  1. [Stateful Functions](./07 - Returning State/01 - Stateful Functions.js)
-  2. [Module Pattern](./07 - Returning State/02 - Module Pattern.js)
-  3. [Default Props and Initial State](./07 - Returning State/03 - Default Props and Initial State.js)
+  1. [Stateful Functions](07%20-%20Returning%20State/01%20-%20Stateful%20Functions.js)
+  2. [Module Pattern](07%20-%20Returning%20State/02%20-%20Module%20Pattern.js)
+  3. [Default Props and Initial State](07%20-%20Returning%20State/03%20-%20Default%20Props%20and%20Initial%20State.js)
+  4. [Callback Chaining](07%20-%20Returning%20State/04%20-%20Callback%20Chaining.js)
+  5. [Async Sequence](07%20-%20Returning%20State/05%20-%20Async%20Sequence.js)
 
 __Types__
-  1. [Elements](./08 - Types/01 - Elements.js)
-  2. [DOM Elements](./08 - Types/02 - DOM Elements.js)
+  1. [Elements](08%20-%20Types/01%20-%20Elements.js)
+  2. [DOM Elements](08%20-%20Types/02%20-%20DOM%20Elements.js)
+  
+__Reduce State__
+  1. [Declarative Component Module](09%20-%20Reduce%20State/01%20-%20Declarative%20Component%20Module.js)
 
 Syntax
 ------

@@ -3,9 +3,13 @@ interface P {
   onClick: function;
 }
 
+interface S {
+  count: number;
+}
+
 // Callbacks take props and state as their first arguments. To update state,
 // they simply return the new version of the state.
-function handleClick(props, state, event) {
+function handleClick(props: P, state: S, event) {
   if (event.button === 1) {
     // Middle click resets state to zero
     return { count: 0 };
@@ -30,7 +34,7 @@ function handleClick(props, state, event) {
 //     );
 //   };
 // }
-export function Counter(props : P, state) {
+export function Counter(props: P, state: S) {
   return (
     <div>
       Clicked {state ? state.count : 0} times
